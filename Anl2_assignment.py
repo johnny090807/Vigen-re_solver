@@ -151,18 +151,18 @@ def solve_vigenere(text, length):
     B_fitness = A_fitness
     C_fitness = B_fitness
     # re-roll the key until it hits a lower number
-    amount_steps = 1000*(length**2)
+    amount_steps = 1000
     for i in range(amount_steps):
         C_word = changeCharOnString(B_word)
         C_fitness = calculate_fitness(decrypt_vigenere(text, C_word))
         if C_fitness < B_fitness:
             B_word = C_word
             B_fitness = C_fitness
-            if A_fitness < B_fitness:
+            if B_fitness < A_fitness:
                 A_word = B_word
                 A_fitness = B_fitness
         else:
-            if r.randint(0, 100) == 1:
+            if r.randint(0, 60) == 1:
                 B_word = C_word
                 B_fitness = C_fitness
         if i % 100 == 0:
